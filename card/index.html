@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>ga tau ini apaan</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Georgia, serif;
+  background:linear-gradient(120deg,#ff9a9e,#fad0c4);
+  text-align:center;
+  overflow-x:hidden;
+}
+
+.photo-wrapper{
+  position:absolute;
+  left:50%;
+  top:65px;
+  transform:translateX(-50%);
+  opacity:0;
+  transition:1s ease;
+  z-index:2;
+}
+
+.envelope.open .photo-wrapper{
+  opacity:1;
+  transform:translate(-50%,-25px);
+}
+
+.envelope-photo{
+  width:140px;
+  height:140px;
+  object-fit:contain;
+  border-radius:16px;
+  display:block;
+}
+
+/* 📝 Teks di atas foto */
+.photo-text{
+  position:absolute;
+  top:10px;              
+  left:50%;
+  transform:translateX(-50%);
+  background:rgba(255,79,129,.85);
+  color:white;
+  padding:4px 12px;
+  border-radius:14px;
+  font-size:13px;
+  font-weight:bold;
+  white-space:nowrap;
+  box-shadow:0 4px 10px rgba(0,0,0,.25);
+}
+
+/* ❤️ Hati jatuh */
+.heart{
+  position:fixed;
+  top:-10px;
+  color:#ff3366;
+  animation:fall linear infinite;
+}
+@keyframes fall{
+  to{transform:translateY(110vh);opacity:0;}
+}
+
+/* 💌 Amplop */
+.envelope{
+  width:260px;
+  height:180px;
+  background:#fff;
+  margin:40px auto;
+  border-radius:12px;
+  box-shadow:0 10px 20px rgba(0,0,0,.25);
+  position:relative;
+  cursor:pointer;
+  overflow:hidden;
+}
+
+.flap{
+  position:absolute;
+  width:100%;
+  height:50%;
+  background:#ffc0cb;
+  clip-path:polygon(0 0,100% 0,50% 100%);
+  transform-origin:top;
+  transition:1s;
+  z-index:3;
+}
+
+.envelope.open .flap{
+  transform:rotateX(180deg);
+}
+
+/* 📸 Foto di dalam amplop */
+.envelope-photo{
+  width:140px;
+  height:140px;
+  object-fit:contain;
+  background:#f3d1d7;
+  border-radius:16px;
+  position:absolute;
+  left:50%;
+  top:10px;
+  transform:translate(-50%,40px) scale(0.85);
+  opacity:0;
+  transition:1s ease;
+  z-index:2;
+  box-shadow:0 8px 18px rgba(0,0,0,.25);
+  
+}
+
+.envelope.open .envelope-photo{
+  opacity:1;
+  transform:translate(-50%,-10px)
+}
+
+/* 🔘 Tombol */
+button{
+  background:#ff4f81;
+  color:white;
+  border:none;
+  padding:10px 18px;
+  border-radius:20px;
+  cursor:pointer;
+  margin:6px;
+}
+button:hover{background:#e84370}
+
+/* 💬 Kotak kata */
+#poemBox{
+  margin:20px auto;
+  width:80%;
+  max-width:420px;
+  background:white;
+  padding:18px;
+  border-radius:18px;
+  box-shadow:0 10px 25px rgba(0,0,0,.2);
+  font-size:16px;
+  min-height:60px;
+  color:#7a1f3d;
+}
+</style>
+</head>
+
+<body>
+
+<h1>💘 METT VALENTINE BOCILLL 💘</h1>
+
+<!-- 💌 Amplop -->
+<div class="envelope" id="envelope" onclick="openEnvelope()">
+  <div class="flap"></div>
+
+  <!-- FOTO DI DALAM AMPLOP -->
+<div class="photo-wrapper">
+  <img 
+    src="images/foto_1.jpg.jpg"
+    class="envelope-photo"
+  >
+</div class="photo-text">WANTED!!!</div>
+</div>
+
+<button onclick="openEnvelope()">🔓 Buka Amplop</button>
+<button onclick="seal()">🔒 Tutup Amplop</button>
+
+<!-- 💬 Kata-kata berurutan -->
+<div id="poemBox">
+  Tuh pencet coba tuh yang bawah
+</div>
+<button onclick="nextPoem()">💬 yang ini nihh</button>
+
+<script>
+/* ❤️ Hati jatuh */
+setInterval(()=>{
+  let h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="❤";
+  h.style.left=Math.random()*100+"vw";
+  h.style.animationDuration=(3+Math.random()*4)+"s";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),7000);
+},300);
+
+/* 💌 Amplop */
+function openEnvelope(){
+  document.getElementById("envelope").classList.add("open");
+}
+function seal(){
+  document.getElementById("envelope").classList.remove("open");
+}
+
+/* 💬 Kata-kata berurutan */
+const poems = [
+  "OIIIII BOCILLLLL🌸.",
+  "SENDOK NYAM NYAMMM🤏🏻.",
+  "APA LAGI YAA LUPAAAA🤔.",
+  "JANGAN MARAH YAWWW KALO AKU LEDEKINN🥰.",
+  "MAAP YAWWWW🙏.",
+  "DIMAAPINNN GA NIIEEEE🤔.",
+  "UDAH PASTI DIMAAPIN LAHHH SAMA SI BOCILLL MAHHH😎",
+  "INTINYAAA",
+  "METTTT VALENTINEEE YAWWWW❤️",
+  "APA LAGII YAA BINGUNGGG🤔",
+  "OHHHH INIII ADA SATUUUU WAJIBBB.",
+  "INI HARUS DI INGETTTTT.",
+  "KALOOO NGIRIMM PAP JANGAN SEKALI LIATTTTTT WOIIIIII!!!!😡.",
+  "UDAH DEH ITU AJA BINGUNG MAU NGETIK APA LAGIII😅.",
+  "MOGA KAMU SUKA DEHHHH💕.",
+  "BAYYYYY SENDOK NYAM NYAMMMM🥰.",
+  "WLEEEEEE😝."
+];
+
+let poemIndex = 0;
+
+function nextPoem(){
+  const box=document.getElementById("poemBox");
+
+  if(poemIndex < poems.length){
+    box.innerHTML = poems[poemIndex];
+    poemIndex++;
+  }else{
+    box.innerHTML = "💌";
+  }
+}
+</script>
+
+</body>
+</html>
